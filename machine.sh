@@ -36,6 +36,9 @@ sudo apt-get purge empathy*
 #stop error messages
 #/etc/default/apport enable=0;sudo service apport stop;
 
+#make bash case-insensitive http://askubuntu.com/a/87065/92185
+echo set completion-ignore-case on | sudo tee -a /etc/inputrc
+
 ln -s ~/work/nagal/.vim ~/.vim
 ln -s ~/work/nagal/.vimrc ~/.vimrc
 ln -s ~/work/nagal/.ctags ~/.ctags
