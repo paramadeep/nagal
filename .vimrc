@@ -6,6 +6,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
+Plugin 'scratch.vim'
 Plugin 'AutoComplPop'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
@@ -26,6 +27,7 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'docunext/closetag.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'paramadeep/Conque'
+Plugin 'shime/vim-livedown'
 call vundle#end()
 
 filetype plugin indent on
@@ -48,17 +50,20 @@ map fs :w<CR>:VroomRunNearestTest<CR>
 map fp :w<CR>:VroomRunLastTest<CR>
 map fa :w<CR>:call RunAllSpecs()<CR>
 
+map <F2> obinding.pry<ESC>:w<CR>
+
 let mapleader = ","
-nmap <leader>n :NERDTreeFind<cr>
-nmap <leader>w :w<cr>
-nmap <leader>q :q<cr>
 nmap <leader>e :e<space>
-nmap <leader>1 :!<space>
+nmap fn :NERDTreeFind<cr>
+nmap fw :w<cr>
+nmap fq :q<cr>
+nmap fg :Ag<space>
+nmap f1 :!<space>
 nmap <leader>s :%s///g
-nmap <leader>r :!ag -r -l  *\| xargs sed -i -e 's///g'
-nmap <leader>f gg=G:w<cr><c-o><c-o>
-nmap <leader>x :set invnumber<cr>
-nmap <leader>z :NERDTreeToggle<cr>
+nmap fr :!ag -r -l  *\| xargs sed -i -e 's///g'
+nmap ff gg=G:w<cr><c-o><c-o>
+nmap fx :set invnumber<cr>
+nmap fz :NERDTreeToggle<cr>
 "https://github.com/tpope/vim-fugitive#fugitivevim
 nmap gs :Gstatus<cr>
 nmap gc :Gcommit<space>-m ""
@@ -72,7 +77,8 @@ nmap fj :wincmd j<CR>
 nmap fh :wincmd h<CR>
 nmap fl :wincmd l<CR>
 
-nmap <silent> <c-e> :CtrlPMRU <CR>
+nmap <silent> fe :CtrlPMRU <CR>
+nmap <silent> fo :CtrlP <CR>
 
 "vroom
 let g:vroom_map_keys = 0

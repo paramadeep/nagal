@@ -40,6 +40,8 @@ sudo apt-get purge empathy*
 echo set completion-ignore-case on | sudo tee -a /etc/inputrc
 
 ln -s ~/work/nagal/.vim ~/.vim
+ln -s ~/work/nagal/.tmux.conf ~/.tmux.conf
+ln -s ~/work/nagal/.tmux ~/.tmux
 ln -s ~/work/nagal/.vimrc ~/.vimrc
 ln -s ~/work/nagal/.ctags ~/.ctags
 ln -s ~/work/nagal/.bash_aliases ~/.bash_aliases

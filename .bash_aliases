@@ -32,16 +32,14 @@ alias gln='git log --name-status'
 alias gl='git log '
 
 
+alias b='bundle exec '
+alias br='bundle exec rake '
+alias bc='bundle exec cucumber '
+alias bu='bundle update '
+alias bi='bundle install '
+alias v='vim '
 #for pam
-alias pamin='echo yes | cagvpn --login --username deepak --password July2011'
-alias pamout='cagvpn --logout'
-export RAILS_ENV=poisol
-alias prodb="echo 'psql -U admin -h 172.16.20.210 -d promotion_qa -p 5446';sshpass -p S6djbI2w  ssh root@172.16.20.242"
-alias mpdb="echo 'psql -U admin -h 172.16.20.210 -d  merchandise_platform_qa -p 5435'; sshpass -p S6djbI2w  ssh root@172.16.20.242"
-alias proapp="echo 'tail -1000fn /data/promotion_app/current/log/italy_qa.log';sshpass -p S6djbI2w  ssh root@172.16.20.242"
-alias proser="echo 'tail -1000fn /data/services/logs/promotion-core.log';sshpass -p S6djbI2w  ssh root@172.16.20.242"
-alias mpapp="echo 'tail -1000fn /data/promotion_app/current/log/italy_qa.log';sshpass -p S6djbI2w  ssh root@172.16.20.242"
-alias mpser="echo 'tail -1000fn /data/promotion_app/current/log/italy_qa.log';sshpass -p D4O1jzu7  ssh root@172.16.20.241"
+export RAILS_ENV=poisol_e2e
 
 #vim
 export EDITOR=/usr/bin/vim
@@ -55,6 +53,8 @@ export PATH=$PATH:/home/d/work/nagal/git-plus
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/home/d/work/app/node/bin/:$PATH"
 export PATH="/home/d/work/app/btsync/:$PATH"
+export PATH="/home/d/work/app/android/tools/:$PATH"
+export PATH="/home/d/work/app/android/platform-tools/:$PATH"
 eval "$(rbenv init -)"
 
 #bundle config jobs 7
