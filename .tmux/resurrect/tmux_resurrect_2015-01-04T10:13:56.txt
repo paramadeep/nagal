@@ -1,0 +1,7 @@
+pane	e2e	0	:vim	0	: 	0	:/home/d/work/pam/promotion_app	1	vim	:vim features/tests/e2e/buyer.feature
+pane	e2e	1	:cas	1	:*	0	:/home/d/work/pam/promotion_app	1	bash	:
+pane	e2e	2	:bash	0	:-	0	:/home/d/work/pam/promotion_app	1	bash	:
+window	e2e	0	0	: 	ce5d,213x58,0,0,0
+window	e2e	1	1	:*	ce5e,213x58,0,0,1
+window	e2e	2	0	:-	ce5f,213x58,0,0,2
+state	e2e	
