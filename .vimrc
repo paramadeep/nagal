@@ -13,6 +13,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-obsession'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'scrooloose/nerdtree'
@@ -28,6 +29,11 @@ Plugin 'docunext/closetag.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'paramadeep/Conque'
 Plugin 'shime/vim-livedown'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-sexp'
 call vundle#end()
 
 filetype plugin indent on
@@ -52,12 +58,12 @@ map fa :w<CR>:call RunAllSpecs()<CR>
 
 map <F2> obinding.pry<ESC>:w<CR>
 
-let mapleader = ","
+let mapleader = ";"
 nmap <leader>e :e<space>
 nmap fn :NERDTreeFind<cr>
 nmap fw :w<cr>
 nmap fq :q<cr>
-nmap fg :Ag<space>
+nmap fg :Ag<space>""
 nmap f1 :!<space>
 nmap <leader>s :%s///g
 nmap fr :!ag -r -l  *\| xargs sed -i -e 's///g'
@@ -71,6 +77,8 @@ nmap gb :Gblame<cr>
 nmap gd :Gdiff<cr>
 nmap gp :Git<space>push<cr>
 nmap gl :Git<space>pull<cr>
+nmap gm :Git<space>commit<space>--amend<space>-m<space>""
+nmap ga :Git<space>add<space>.<cr>
 "http://stackoverflow.com/questions/6053301/easier-way-to-navigate-between-vim-split-panes
 nmap fk :wincmd k<CR>
 nmap fj :wincmd j<CR>            

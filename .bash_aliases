@@ -38,6 +38,7 @@ alias bc='bundle exec cucumber '
 alias bu='bundle update '
 alias bi='bundle install '
 alias v='vim '
+alias t='tmux '
 #for pam
 export RAILS_ENV=poisol_e2e
 
@@ -59,3 +60,6 @@ eval "$(rbenv init -)"
 
 #bundle config jobs 7
 #sed -i -e 's/x/y/g' *.txt
+#
+#tmux 
+export HISTCONTROL=ignoreboth
