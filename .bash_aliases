@@ -40,7 +40,7 @@ alias bi='bundle install '
 alias v='vim '
 alias t='tmux '
 #for pam
-export RAILS_ENV=poisol_e2e
+export RAILS_ENV=poisol
 
 #vim
 export EDITOR=/usr/bin/vim
@@ -56,6 +56,10 @@ export PATH="/home/d/work/app/node/bin/:$PATH"
 export PATH="/home/d/work/app/btsync/:$PATH"
 export PATH="/home/d/work/app/android/tools/:$PATH"
 export PATH="/home/d/work/app/android/platform-tools/:$PATH"
+export PATH="/home/d/bin/:$PATH"
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export GRADLE_HOME=/home/d/work/app/gradle-2.3
+export PATH="$GRADLE_HOME/bin:$PATH"
 eval "$(rbenv init -)"
 
 #bundle config jobs 7
@@ -63,3 +67,9 @@ eval "$(rbenv init -)"
 #
 #tmux 
 export HISTCONTROL=ignoreboth
+
+# Load pyenv automatically by adding
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+

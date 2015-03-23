@@ -1,5 +1,5 @@
 set nocompatible      " We're running Vim, not Vi!
-
+filetype off
 "https://github.com/gmarik/Vundle.vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -34,6 +34,9 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-fireplace'
 Plugin 'guns/vim-sexp'
+Plugin 'einars/js-beautify'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'fatih/vim-go'
 call vundle#end()
 
 filetype plugin indent on
@@ -88,6 +91,13 @@ nmap fl :wincmd l<CR>
 nmap <silent> fe :CtrlPMRU <CR>
 nmap <silent> fo :CtrlP <CR>
 
+  map <c-f> :call JsBeautify()<cr>
+  " or
+  autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+  " for html
+  autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+  " for css or scss
+  autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "vroom
 let g:vroom_map_keys = 0
 let g:vroom_cucumber_path = "cucumber"
@@ -112,3 +122,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 "disable vroom default key map
 let g:vroom_map_keys = 0
+
+"disable folding for md
+let g:vim_markdown_folding_disabled=1

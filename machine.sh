@@ -62,6 +62,9 @@ ln -s ~/work/nagal/apps ~/.local/share/applications/apps
 mkdir -p ~/work/app/
 curl -o ~/work/app/btsync.tar.gz http://download.getsyncapp.com/endpoint/btsync/os/linux-x64/track/stable
 unzip ~/work/app/btsync.tar.gz ~/work/app/btsync
+
+#python
+curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 #hibernate
 #sudo nano /etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla
 #[Re-enable hibernate by default]
