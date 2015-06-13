@@ -8,7 +8,8 @@ alias fn='find -name'
 #start service
 #/etc/init.d/<> start
 
-export PS1='${debian_chgeroot:+($debian_chroot)}\W\[\033[01;31m\]$ \[\033[01;37m\]'
+export PS1='\[\033[33;1m\]\w\[\033[m\]\$ '
+#export PS1='${debian_chgeroot:+($debian_chroot)}\W\[\033[01;31m\]$ \[\033[01;37m\]'
 
 #openshift RedHat
 alias rapp='rhc app'
@@ -44,7 +45,6 @@ export RAILS_ENV=poisol
 
 #vim
 export EDITOR=/usr/bin/vim
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 #ftp
 alias ftps='python -m SimpleHTTPServer 8000'
@@ -53,12 +53,9 @@ export PATH=$PATH:/home/d/work/nagal/git-plus
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/home/d/work/app/node/bin/:$PATH"
-export PATH="/home/d/work/app/btsync/:$PATH"
 export PATH="/home/d/work/app/android/tools/:$PATH"
 export PATH="/home/d/work/app/android/platform-tools/:$PATH"
 export PATH="/home/d/bin/:$PATH"
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-export GRADLE_HOME=/home/d/work/app/gradle-2.3
 export PATH="$GRADLE_HOME/bin:$PATH"
 eval "$(rbenv init -)"
 
@@ -69,7 +66,7 @@ eval "$(rbenv init -)"
 export HISTCONTROL=ignoreboth
 
 # Load pyenv automatically by adding
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#export PATH="$HOME/.pyenv/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 

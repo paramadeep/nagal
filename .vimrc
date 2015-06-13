@@ -6,6 +6,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
+Plugin 'nginx.vim'
+Plugin 'xolox/vim-lua-ftplugin'
 Plugin 'scratch.vim'
 Plugin 'AutoComplPop'
 Plugin 'rking/ag.vim'
@@ -19,7 +21,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'scrooloose/nerdtree'
 Plugin 'skalnik/vim-vroom'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-scripts/vim-auto-save'
+Plugin '907th/vim-auto-save'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'vim-scripts/jade.vim'
 Plugin 'chase/vim-ansible-yaml'
@@ -37,6 +39,11 @@ Plugin 'guns/vim-sexp'
 Plugin 'einars/js-beautify'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'fatih/vim-go'
+Plugin 'tfnico/vim-gradle'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+"ios
+Plugin 'eraserhd/vim-ios'
+Plugin 'msanders/cocoa.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -53,6 +60,8 @@ set autoindent
 set wildmode=full
 set laststatus=2 "always display status
 highlight LineNr ctermbg=black
+
+set ruler
 
 map ft :w<CR>:VroomRunTestFile<CR>
 map fs :w<CR>:VroomRunNearestTest<CR>
@@ -100,7 +109,7 @@ nmap <silent> fo :CtrlP <CR>
   autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "vroom
 let g:vroom_map_keys = 0
-let g:vroom_cucumber_path = "cucumber"
+let g:vroom_cucumber_path = "cucumber -r features "
 
 "spelling
 :set spell
@@ -125,3 +134,7 @@ let g:vroom_map_keys = 0
 
 "disable folding for md
 let g:vim_markdown_folding_disabled=1
+
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/etc/nginx/* if &ft == '' | setfiletype nginx | endif 
+
+set backspace=indent,eol,start
