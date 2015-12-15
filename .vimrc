@@ -41,9 +41,11 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'fatih/vim-go'
 Plugin 'tfnico/vim-gradle'
 Plugin 'Glench/Vim-Jinja2-Syntax'
-"ios
-Plugin 'eraserhd/vim-ios'
-Plugin 'msanders/cocoa.vim'
+Plugin 'scrooloose/syntastic'
+"javascript
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'moll/vim-node'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
 
 filetype plugin indent on
@@ -138,3 +140,28 @@ let g:vim_markdown_folding_disabled=1
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/etc/nginx/* if &ft == '' | setfiletype nginx | endif 
 
 set backspace=indent,eol,start
+
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+set mouse=a
+set clipboard=unnamed
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }

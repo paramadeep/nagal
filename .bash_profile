@@ -1,27 +1,36 @@
-#eval "$(rbenv init -)"
-eval "$(boot2docker shellinit)"
-export PATH=$PATH:~/work/app/android-sdk-macosx/platforms/:~/work/app/android-sdk-macosx/tools/:/Users/D/work/app/logstash-1.5.0/bin/
+eval "$(rbenv init -)"
+#eval "$(boot2docker shellinit)"
+export PATH=$PATH:/Users/D/work/app/logstash-1.5.0/bin/
 export PATH=$PATH:/usr/local/openresty/nginx/sbin
 export PATH=$PATH:/usr/local/sbin
-export PATH=~/work/app/node/bin:$PATH
+export PATH=$PATH:/Users/D/work/app/multi-git
 export PS1="\W$ "
 set completion-ignore-case on
 #git
 alias gad='git add --all'
+alias gap='git add --all -p'
 alias gst='git status'
 alias gcm='git commit -m'
 alias gcma='git commit -a -m'
 alias gcaa='git commit -a --amend -m'
-alias gca='git commit --amend -m'
+alias gca='git commit --amend '
 alias gpl='git pull'
 alias gplr='git pull --reb'
 alias gph='git push'
-alias gsh='git stash -f'
+alias gsh='git stash -u'
 alias gsp='git stash pop'
 alias gln='git log --name-status'
 alias gl='git log '
+alias ghis='git log --follow -p '
 alias g='grep'
+alias gdc='git diff --cached'
+alias gdf='git diff'
 
+alias grt="gradle test"
+alias grb="gradle build"
+alias grs="gradle shodowJar"
+alias grbs="gradle build shodowJar"
+alias grr="gradle run"
 
 alias dps='docker ps'
 alias drun='docker run'
@@ -38,7 +47,7 @@ alias bc='bundle exec cucumber '
 alias bs='bundle exec rspec '
 alias bu='bundle update '
 alias bi='bundle install '
-alias v='/usr/local/Cellar/vim/7.4.488/bin/vim'
+alias vi='vim'
 
 export EDITOR=/usr/bin/vim
 
@@ -46,3 +55,6 @@ ulimit -n 65536
 alias ftps='python -m SimpleHTTPServer 8000'
 
 alias avdm='android avd'
+export HISTTIMEFORMAT="%d/%m/%y %T "
+export TEST_ENV=UAT
+export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4
