@@ -41,11 +41,14 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'fatih/vim-go'
 Plugin 'tfnico/vim-gradle'
 Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 "javascript
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'moll/vim-node'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'jistr/vim-nerdtree-tabs'
 call vundle#end()
 
 filetype plugin indent on
@@ -60,6 +63,7 @@ set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
 
 set wildmode=full
+set wildmenu 
 set laststatus=2 "always display status
 highlight LineNr ctermbg=black
 
@@ -73,7 +77,7 @@ map fa :w<CR>:call RunAllSpecs()<CR>
 map <F2> obinding.pry<ESC>:w<CR>
 
 let mapleader = ";"
-nmap <leader>e :e<space>
+nmap <leader>e :tabedit<space>
 nmap fn :NERDTreeFind<cr>
 nmap fw :w<cr>
 nmap fq :q<cr>
@@ -83,7 +87,7 @@ nmap <leader>s :%s///g
 nmap fr :!ag -r -l  *\| xargs sed -i -e 's///g'
 nmap ff gg=G:w<cr><c-o><c-o>
 nmap fx :set invnumber<cr>
-nmap fz :NERDTreeToggle<cr>
+nmap fz :NERDTreeTabsToggle<cr>
 "https://github.com/tpope/vim-fugitive#fugitivevim
 nmap gs :Gstatus<cr>
 nmap gc :Gcommit<space>-m ""
@@ -101,14 +105,18 @@ nmap fl :wincmd l<CR>
 
 nmap <silent> fe :CtrlPMRU <CR>
 nmap <silent> fo :CtrlP <CR>
+let g:ctrlp_match_window = 'order:ttb'
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_mruf_relative = 1
 
-  map <c-f> :call JsBeautify()<cr>
-  " or
-  autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-  " for html
-  autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-  " for css or scss
-  autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+map <c-f> :call JsBeautify()<cr>
+" or
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "vroom
 let g:vroom_map_keys = 0
 let g:vroom_cucumber_path = "cucumber -r features "
@@ -120,7 +128,9 @@ hi SpellBad cterm=underline
 
 "https://github.com/vim-scripts/vim-auto-save
 let g:auto_save = 1 
-let g:auto_save_no_updatetime = 1 
+let g:auto_save_no_updatetime = 0 
+let g:auto_save_in_insert_mode = 1
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 "https://github.com/scrooloose/nerdtree#faq
 "autocmd vimenter * NERDTree
@@ -142,26 +152,53 @@ au BufRead,BufNewFile /etc/nginx/*,/usr/local/etc/nginx/* if &ft == '' | setfile
 set backspace=indent,eol,start
 
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 set mouse=a
 set clipboard=unnamed
 
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔︎",
+      \ "Unknown"   : "?"
+      \ }
+
+let g:jsx_ext_required = 0
+
+:hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
+:hi TabLine ctermfg=Blue ctermbg=Yellow
+:hi TabLineSel ctermfg=Yellow ctermbg=Red
+
+"https://github.com/kien/ctrlp.vim/issues/160
+let g:ctrlp_prompt_mappings = {
+      \ 'AcceptSelection("e")': ['<c-t>'],
+      \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+      \ }
+
+"http://stackoverflow.com/a/4000955/1520443
+if exists('b:haveRemappedT')
+  finish
+endif
+let b:haveRemappedT=1
+let s:oldmap=maparg('T', 'n')
+function! s:LastTab()
+  let tab=tabpagenr()
+  tabnext
+  execute "tabmove ".tabpagenr('$')
+  execute "tabn ".tab
+endfunction
+execute 'nnoremap <buffer> T '.s:oldmap.':call <SID>LastTab()<CR>'
+

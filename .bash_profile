@@ -28,9 +28,16 @@ alias gdf='git diff'
 
 alias grt="gradle test"
 alias grb="gradle build"
-alias grs="gradle shodowJar"
-alias grbs="gradle build shodowJar"
+alias grs="gradle shadowJar"
+alias grbs="gradle build shadowJar"
 alias grr="gradle run"
+alias grm="gradle migrateUp"
+alias grmt="gradle migrateUp -Penv=test"
+alias grd="gradle migrateDown"
+alias grdt="gradle migrateDown -Penv=test"
+alias grn="gradle migrateNew"
+
+alias e="exit"
 
 alias dps='docker ps'
 alias drun='docker run'
@@ -47,7 +54,7 @@ alias bc='bundle exec cucumber '
 alias bs='bundle exec rspec '
 alias bu='bundle update '
 alias bi='bundle install '
-alias vi='vim'
+alias v='vim'
 
 export EDITOR=/usr/bin/vim
 
@@ -57,4 +64,4 @@ alias ftps='python -m SimpleHTTPServer 8000'
 alias avdm='android avd'
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export TEST_ENV=UAT
-export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4
+export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
