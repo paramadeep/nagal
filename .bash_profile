@@ -65,3 +65,4 @@ alias avdm='android avd'
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export TEST_ENV=UAT
 export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
+export ANDROID_NDK=~/work/app/android-ndk-r10e/

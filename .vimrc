@@ -49,6 +49,9 @@ Plugin 'mxw/vim-jsx'
 Plugin 'moll/vim-node'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'SirVer/ultisnips'
 call vundle#end()
 
 filetype plugin indent on
@@ -77,7 +80,10 @@ map fa :w<CR>:call RunAllSpecs()<CR>
 map <F2> obinding.pry<ESC>:w<CR>
 
 let mapleader = ";"
-nmap <leader>e :tabedit<space>
+nmap <leader>e :e<space>
+nmap <leader>h :bprevious<CR>
+nmap <leader>l :bnext<CR>
+nmap <leader>q :bp <BAR> bd #<CR>
 nmap fn :NERDTreeFind<cr>
 nmap fw :w<cr>
 nmap fq :q<cr>
@@ -132,7 +138,7 @@ let g:auto_save_no_updatetime = 0
 let g:auto_save_in_insert_mode = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
-"https://github.com/scrooloose/nerdtree#faq
+"https://github.com/scrooloose/nerdtree#faq 
 "autocmd vimenter * NERDTree
 "autocmd vimenter * if !argc() | NERDTree | endif
 "autocmd VimEnter * wincmd p
@@ -151,16 +157,6 @@ au BufRead,BufNewFile /etc/nginx/*,/usr/local/etc/nginx/* if &ft == '' | setfile
 
 set backspace=indent,eol,start
 
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
 set mouse=a
 set clipboard=unnamed
 
@@ -178,27 +174,6 @@ let g:NERDTreeIndicatorMapCustom = {
 
 let g:jsx_ext_required = 0
 
-:hi TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
-:hi TabLine ctermfg=Blue ctermbg=Yellow
-:hi TabLineSel ctermfg=Yellow ctermbg=Red
-
-"https://github.com/kien/ctrlp.vim/issues/160
-let g:ctrlp_prompt_mappings = {
-      \ 'AcceptSelection("e")': ['<c-t>'],
-      \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-      \ }
-
-"http://stackoverflow.com/a/4000955/1520443
-if exists('b:haveRemappedT')
-  finish
-endif
-let b:haveRemappedT=1
-let s:oldmap=maparg('T', 'n')
-function! s:LastTab()
-  let tab=tabpagenr()
-  tabnext
-  execute "tabmove ".tabpagenr('$')
-  execute "tabn ".tab
-endfunction
-execute 'nnoremap <buffer> T '.s:oldmap.':call <SID>LastTab()<CR>'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
