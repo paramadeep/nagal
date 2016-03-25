@@ -5,10 +5,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'L9'
 Plugin 'nginx.vim'
 Plugin 'xolox/vim-lua-ftplugin'
-Plugin 'scratch.vim'
 Plugin 'AutoComplPop'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
@@ -22,19 +20,16 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'skalnik/vim-vroom'
 Plugin 'scrooloose/nerdcommenter'
 Plugin '907th/vim-auto-save'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'vim-scripts/jade.vim'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'docunext/closetag.vim'
 Plugin 'Raimondi/delimitMate'
-Plugin 'paramadeep/Conque'
 Plugin 'shime/vim-livedown'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'guns/vim-clojure-static'
-Plugin 'tpope/vim-fireplace'
+"Plugin 'guns/vim-clojure-static'
+"Plugin 'tpope/vim-fireplace'
 Plugin 'guns/vim-sexp'
 Plugin 'einars/js-beautify'
 Plugin 'maksimr/vim-jsbeautify'
@@ -48,8 +43,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'moll/vim-node'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'SirVer/ultisnips'
 call vundle#end()
@@ -81,8 +75,8 @@ map <F2> obinding.pry<ESC>:w<CR>
 
 let mapleader = ";"
 nmap <leader>e :e<space>
-nmap <leader>h :bprevious<CR>
-nmap <leader>l :bnext<CR>
+nmap m :bnext<CR>
+nmap t :bprevious<CR>
 nmap <leader>q :bp <BAR> bd #<CR>
 nmap fn :NERDTreeFind<cr>
 nmap fw :w<cr>
@@ -93,7 +87,7 @@ nmap <leader>s :%s///g
 nmap fr :!ag -r -l  *\| xargs sed -i -e 's///g'
 nmap ff gg=G:w<cr><c-o><c-o>
 nmap fx :set invnumber<cr>
-nmap fz :NERDTreeTabsToggle<cr>
+nmap fz :NERDTreeToggle<cr>
 "https://github.com/tpope/vim-fugitive#fugitivevim
 nmap gs :Gstatus<cr>
 nmap gc :Gcommit<space>-m ""
@@ -113,7 +107,7 @@ nmap <silent> fe :CtrlPMRU <CR>
 nmap <silent> fo :CtrlP <CR>
 let g:ctrlp_match_window = 'order:ttb'
 let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'ag %s -l -g ""'
 let g:ctrlp_mruf_relative = 1
 
 map <c-f> :call JsBeautify()<cr>
@@ -134,7 +128,8 @@ hi SpellBad cterm=underline
 
 "https://github.com/vim-scripts/vim-auto-save
 let g:auto_save = 1 
-let g:auto_save_no_updatetime = 0 
+let g:auto_save_no_updatetime = 1 
+let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
@@ -177,3 +172,18 @@ let g:jsx_ext_required = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+if executable('ag')
+    let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --hidden -g ""'
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden'
+    let g:unite_source_grep_recursive_opt=''
+endif
+
+" ruby path if you are using rbenv
+let g:ruby_path = system('echo $HOME/.rbenv/shims')
+
+" http://stackoverflow.com/a/16920294/1520443
+set re=1
+
+set ttyfast
+set lazyredraw
