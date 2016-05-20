@@ -1,24 +1,34 @@
 snippet react
 'use strict';
 
-var React = require('react-native');
-var {
+import React, { Component } from 'react';
+import {
   StyleSheet,
-  Text,
-  View,
-} = React;
+  View
+} from 'react-native';
 
-var $1 = React.createClass({
+export default class $1  extends Component{
 	render() {
 		return(
 		 <View/>
 		);
 	}
-});
+};
 
 var styles=StyleSheet.create({
 
 });
 
-module.exports=$1;
+endsnippet
+
+snippet funct
+export default function(){
+
+}
+endsnippet
+
+snippet obj
+export default {
+
+}
 endsnippet

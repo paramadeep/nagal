@@ -14,6 +14,7 @@ Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-obsession'
+Plugin 'tpope/vim-rails'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'scrooloose/nerdtree'
@@ -36,16 +37,17 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'fatih/vim-go'
 Plugin 'tfnico/vim-gradle'
 Plugin 'Glench/Vim-Jinja2-Syntax'
-"Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 "javascript
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'moll/vim-node'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-"Plugin 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'SirVer/ultisnips'
+"Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 
 filetype plugin indent on
@@ -128,7 +130,7 @@ hi SpellBad cterm=underline
 
 "https://github.com/vim-scripts/vim-auto-save
 let g:auto_save = 1 
-let g:auto_save_no_updatetime = 1 
+let g:auto_save_no_updatetime = 0 
 let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
@@ -137,7 +139,7 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 "autocmd vimenter * NERDTree
 "autocmd vimenter * if !argc() | NERDTree | endif
 "autocmd VimEnter * wincmd p
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "http://vim.wikia.com/wiki/Format_your_xml_document_using_xmllint
 "au FileType xml exe html svg ":silent %!xmllint --format --recover - 2>/dev/null"
@@ -187,3 +189,8 @@ set re=1
 
 set ttyfast
 set lazyredraw
+
+" CocoaPods
+au BufNewFile,BufRead Podfile,*.podspec      set filetype=ruby
+
+let g:gitgutter_sign_column_always = 1
