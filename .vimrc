@@ -1,54 +1,24 @@
 set nocompatible      " We're running Vim, not Vi!
-filetype off
-"https://github.com/gmarik/Vundle.vim
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'nginx.vim'
-Plugin 'xolox/vim-lua-ftplugin'
-Plugin 'AutoComplPop'
-Plugin 'rking/ag.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-obsession'
-Plugin 'tpope/vim-rails'
-Plugin 'xolox/vim-easytags'
-Plugin 'xolox/vim-misc'
-Plugin 'scrooloose/nerdtree'
-Plugin 'skalnik/vim-vroom'
-Plugin 'scrooloose/nerdcommenter'
-Plugin '907th/vim-auto-save'
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'docunext/closetag.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'shime/vim-livedown'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-"Plugin 'guns/vim-clojure-static'
-"Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-sexp'
-Plugin 'einars/js-beautify'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'fatih/vim-go'
-Plugin 'tfnico/vim-gradle'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'scrooloose/syntastic'
-"javascript
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'moll/vim-node'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
-Plugin 'SirVer/ultisnips'
-"Plugin 'Valloric/YouCompleteMe'
-call vundle#end()
+call plug#begin('~/.vim/plugged')
+Plug 'xolox/vim-lua-ftplugin'
+Plug 'AutoComplPop'
+Plug 'rking/ag.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'scrooloose/nerdtree'
+Plug 'janko-m/vim-test'
+Plug 'scrooloose/nerdcommenter'
+Plug '907th/vim-auto-save'
+Plug 'chase/vim-ansible-yaml'
+Plug 'guns/vim-sexp' 
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'bling/vim-airline'
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
+Plug 'flowtype/vim-flow'
+call plug#end()
 
 filetype plugin indent on
 syntax on             " Enable syntax highlighting
@@ -68,10 +38,10 @@ highlight LineNr ctermbg=black
 
 set ruler
 
-map ft :w<CR>:VroomRunTestFile<CR>
-map fs :w<CR>:VroomRunNearestTest<CR>
-map fp :w<CR>:VroomRunLastTest<CR>
-map fa :w<CR>:call RunAllSpecs()<CR>
+map ft :w<CR>:TestFile<CR>
+map fs :w<CR>:TestNearest<CR>
+map fp :w<CR>:TestLast<CR>
+map fa :w<CR>:TestSuite<CR>
 
 map <F2> obinding.pry<ESC>:w<CR>
 
@@ -98,7 +68,11 @@ nmap gd :Gdiff<cr>
 nmap gp :Git<space>push<cr>
 nmap gl :Git<space>pull<cr>
 nmap gm :Git<space>commit<space>--amend<space>-m<space>""
-nmap ga :Git<space>add<space>.<cr>
+nmap ga :Git<space>add<space>%<cr>
+nmap g] <Plug>GitGutterNextHunk
+nmap g[ <Plug>GitGutterPrevHunk
+nmap gt <Plug>GitGutterStageHunk
+nmap gh <Plug>GitGutterUndoHunk
 "http://stackoverflow.com/questions/6053301/easier-way-to-navigate-between-vim-split-panes
 nmap fk :wincmd k<CR>
 nmap fj :wincmd j<CR>            
@@ -111,17 +85,6 @@ let g:ctrlp_match_window = 'order:ttb'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_user_command = 'ag %s -l -g ""'
 let g:ctrlp_mruf_relative = 1
-
-map <c-f> :call JsBeautify()<cr>
-" or
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-"vroom
-let g:vroom_map_keys = 0
-let g:vroom_cucumber_path = "cucumber -r features "
 
 "spelling
 :set spell
@@ -143,14 +106,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 "http://vim.wikia.com/wiki/Format_your_xml_document_using_xmllint
 "au FileType xml exe html svg ":silent %!xmllint --format --recover - 2>/dev/null"
-
-"disable vroom default key map
-let g:vroom_map_keys = 0
-
-"disable folding for md
-let g:vim_markdown_folding_disabled=1
-
-au BufRead,BufNewFile /etc/nginx/*,/usr/local/etc/nginx/* if &ft == '' | setfiletype nginx | endif 
 
 set backspace=indent,eol,start
 
@@ -194,3 +149,16 @@ set lazyredraw
 au BufNewFile,BufRead Podfile,*.podspec      set filetype=ruby
 
 let g:gitgutter_sign_column_always = 1
+highlight clear SignColumn
+
+"folding settings http://smartic.us/2009/04/06/code-folding-in-vim/
+"set foldmethod=indent   "fold based on indent
+"set foldnestmax=10      "deepest fold is 10 levels
+"set nofoldenable        "dont fold by default
+"set foldlevel=1         "this is just what i use
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+let g:flow#enable = 0

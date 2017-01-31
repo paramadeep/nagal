@@ -55,7 +55,7 @@ alias bc='bundle exec cucumber '
 alias bs='bundle exec rspec '
 alias bu='bundle update '
 alias bi='bundle install '
-alias v='vim'
+alias v='mvim -v'
 
 export EDITOR=/usr/bin/vim
 
@@ -67,3 +67,35 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export TEST_ENV=UAT
 export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
 export ANDROID_NDK=~/work/app/android-ndk-r10e/
+
+function mountAndroid { hdiutil attach ~/android.dmg.sparseimage -mountpoint /Volumes/android; }
+
+##
+# Your previous /Users/D/.bash_profile file was backed up as /Users/D/.bash_profile.macports-saved_2016-06-11_at_00:56:03
+##
+
+# MacPorts Installer addition on 2016-06-11_at_00:56:03: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/D/work/app/google-cloud-sdk/path.bash.inc ]; then
+  source '/Users/D/work/app/google-cloud-sdk/path.bash.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/D/work/app/google-cloud-sdk/completion.bash.inc ]; then
+  source '/Users/D/work/app/google-cloud-sdk/completion.bash.inc'
+fi
+
+export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
