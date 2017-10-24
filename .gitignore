@@ -38,3 +38,4 @@ build/
 log/
 
 .tmux/resurrect/
+.logs/

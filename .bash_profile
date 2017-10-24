@@ -4,7 +4,12 @@ export PATH=$PATH:/Users/D/work/app/logstash-1.5.0/bin/
 export PATH=$PATH:/usr/local/openresty/nginx/sbin
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/Users/D/work/app/multi-git
+export PATH=$PATH:/Users/D/work/app/scripts
+export PATH=$PATH:/Users/D/work/app/webdriver/
 export PS1="\W$ "
+export HITSIZE=5000
+export HISTFILESIZE=5000
+
 set completion-ignore-case on
 #git
 alias gad='git add --all'
@@ -16,7 +21,7 @@ alias gcaa='git commit -a --amend -m'
 alias gca='git commit --amend '
 alias gpl='git pull'
 alias gplr='git pull --reb'
-alias gph='git push'
+alias gph='git push --no-verify'
 alias gsh='git stash -u'
 alias gsp='git stash pop'
 alias gln='git log --name-status'
@@ -29,6 +34,7 @@ alias gdf='git diff'
 
 alias grt="gradle test"
 alias grb="gradle build"
+alias grp="gradle publish"
 alias grs="gradle shadowJar"
 alias grbs="gradle build shadowJar"
 alias grr="gradle run"
@@ -62,11 +68,15 @@ export EDITOR=/usr/bin/vim
 ulimit -n 65536
 alias ftps='python -m SimpleHTTPServer 8000'
 
-alias avdm='android avd'
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export TEST_ENV=UAT
-export ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
-export ANDROID_NDK=~/work/app/android-ndk-r10e/
+export ANDROID_SDK_ROOT=/Users/D/work/android
+export ANDROID_NDK=/Users/D/work/app/android-ndk-r10e
+export ANDROID_HOME=/Users/D/work/app/android
+export ANDROID_SDK=/Users/D/work/app/android
+export ANDROID_SDK_HOME=/Users/D/work/app/android
+export ANDROID_AVD_HOME=/Users/D/.android/avd
+export PATH=$PATH:/Users/D/work/app/android/build-tools/:/Users/D/work/app/android/tools/:/Users/D/work/app/android/tools/bin
 
 function mountAndroid { hdiutil attach ~/android.dmg.sparseimage -mountpoint /Volumes/android; }
 
@@ -99,3 +109,29 @@ if [ -f /Users/D/work/app/google-cloud-sdk/completion.bash.inc ]; then
 fi
 
 export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
+
+# https://blog.fabric8.io/enable-bash-completion-for-kubernetes-with-kubectl-506bc89fe79e#.e9omcc37g
+source <(kubectl completion bash)
+
+export NAME=kube-prod.spicinemas.in
+export KOPS_STATE_STORE=s3://spi-kubernetes-artifacts-prod
+
+alias scheme="rlwrap -r -c -f ~/work/app/mit_scheme_bindings.txt scheme"
+
+if [ -f /Users/D/.bash_sathyam ]; then
+  source '/Users/D/.bash_sathyam'
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export CC=/usr/local/bin/gcc-4.8
+export CFLAGS=-fobjc-exceptions
+export CXX=/usr/local/bin/g++-4.8
+export SA_LDFLAGS=-fobjc-exceptions
+
+# https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*"'
+
