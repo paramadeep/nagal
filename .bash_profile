@@ -78,17 +78,6 @@ export ANDROID_SDK_HOME=/Users/D/work/app/android
 export ANDROID_AVD_HOME=/Users/D/.android/avd
 export PATH=$PATH:/Users/D/work/app/android/build-tools/:/Users/D/work/app/android/tools/:/Users/D/work/app/android/tools/bin
 
-function mountAndroid { hdiutil attach ~/android.dmg.sparseimage -mountpoint /Volumes/android; }
-
-##
-# Your previous /Users/D/.bash_profile file was backed up as /Users/D/.bash_profile.macports-saved_2016-06-11_at_00:56:03
-##
-
-# MacPorts Installer addition on 2016-06-11_at_00:56:03: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 export GOPATH=$HOME/go
@@ -108,7 +97,7 @@ if [ -f /Users/D/work/app/google-cloud-sdk/completion.bash.inc ]; then
   source '/Users/D/work/app/google-cloud-sdk/completion.bash.inc'
 fi
 
-export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
+export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
 
 # https://blog.fabric8.io/enable-bash-completion-for-kubernetes-with-kubectl-506bc89fe79e#.e9omcc37g
 source <(kubectl completion bash)
@@ -135,3 +124,8 @@ export SA_LDFLAGS=-fobjc-exceptions
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*"'
 
+  __my_fzf_history__() {
+    awk '!($1=$2=$3=$4="")' ~/.logs/* | awk '!a[$0]++' | fzf --height 40% --reverse ;
+  }
+
+bind '"\C-r": " \C-e\C-u`__my_fzf_history__`\e\C-e\e^\er"'
