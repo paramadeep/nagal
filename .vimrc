@@ -19,6 +19,7 @@ Plug 'flowtype/vim-flow'
 Plug 'w0rp/ale'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-rails'
 call plug#end()
 
 filetype plugin indent on

@@ -1,11 +1,14 @@
 eval "$(rbenv init -)"
 #eval "$(boot2docker shellinit)"
+export PATH=$PATH:/Users/D/work/app/android/build-tools/:/Users/D/work/app/android/tools/:/Users/D/work/app/android/tools/bin
 export PATH=$PATH:/Users/D/work/app/logstash-1.5.0/bin/
 export PATH=$PATH:/usr/local/openresty/nginx/sbin
 export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/Users/D/work/app/multi-git
 export PATH=$PATH:/Users/D/work/app/scripts
 export PATH=$PATH:/Users/D/work/app/webdriver/
+export PATH=$PATH:/usr/local/Cellar/mono/5.4.1.6/bin
+export PATH=$PATH:/usr/local/Cellar/mono/5.4.1.6/bin
 export PS1="\W$ "
 export HITSIZE=5000
 export HISTFILESIZE=5000
@@ -76,7 +79,6 @@ export ANDROID_HOME=/Users/D/work/app/android
 export ANDROID_SDK=/Users/D/work/app/android
 export ANDROID_SDK_HOME=/Users/D/work/app/android
 export ANDROID_AVD_HOME=/Users/D/.android/avd
-export PATH=$PATH:/Users/D/work/app/android/build-tools/:/Users/D/work/app/android/tools/:/Users/D/work/app/android/tools/bin
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
@@ -129,3 +131,4 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.
   }
 
 bind '"\C-r": " \C-e\C-u`__my_fzf_history__`\e\C-e\e^\er"'
+export PATH="/usr/local/opt/elasticsearch@5.6/bin:$PATH"
