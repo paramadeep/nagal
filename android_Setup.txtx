@@ -1,0 +1,31 @@
+download commad line tools from
+```https://developer.android.com/studio/#downloads
+list of platforms
+```bin/sdkmanager --list --verbose
+install platform
+```
+sdkmanager "platforms;android-19" --sdk_root="/User/d/work/app/android"
+sdkmanager "platform-tools" --sdk_root="/User/d/work/app/android"
+sdkmanager "add-ons;addon-google_apis-google-19"
+sdkmanager "system-images;android-19;google_apis;x86"
+sdkmanager emulator
+```
+create avds
+```
+## id: 16 or "Nexus S"
+avdmanager create avd -n kitkat -d 16 --force -k "system-images;android-19;google_apis;x86" --tag "google_apis"
+```
+
+https://stackoverflow.com/questions/43816737/how-to-create-an-android-avd-for-pixel-device-from-command-line
+
+avdmanager list avd | gret path and append in config.ini
+
+showDeviceFrame=yes
+skin.dynamic=yes
+skin.name=WXGA720
+skin.path=/Users/d/work/app/android/platforms/android-19/skins/WXGA720
+hw.gpu.enabled=yes
+hw.gpu.mode=auto
+hw.ramSize=1536
+
+emulator 
