@@ -131,12 +131,11 @@ let g:jsx_ext_required = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-if executable('ag')
-    let g:unite_source_rec_async_command = 'rg --nocolor --nogroup --hidden -g ""'
-    let g:unite_source_grep_command = 'rg'
-    let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden'
-    let g:unite_source_grep_recursive_opt=''
-endif
+let g:unite_source_rec_async_command = 'rg --nocolor --nogroup --hidden -g ""'
+let g:unite_source_grep_command = 'rg'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup --hidden'
+let g:unite_source_grep_recursive_opt=''
+let g:ag_prg="rg --vimgrep"
 
 " ruby path if you are using rbenv
 let g:ruby_path = system('echo $HOME/.rbenv/shims')

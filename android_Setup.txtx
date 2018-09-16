@@ -29,3 +29,14 @@ hw.gpu.mode=auto
 hw.ramSize=1536
 
 emulator 
+
+
+sdkmanager --list
+sdkmanager "platform-tools"
+sdkmanager "emulator"
+sdkmanager "platforms;android-28"
+sdkmanager "extras;intel;Hardware_Accelerated_Execution_Manager"
+sdkmanager "tools"
+sdkmanager "system-images;android-23;google_apis;x86_64"
+avdmanager create avd --force --name android23 --abi google_apis/x86_64 --package 'system-images;android-23;google_apis;x86_64' -d 16
+emulator @android23
